@@ -45,23 +45,104 @@ export const NavItem = styled.div`
     }
 `;
 
+export const SearchWrapper = styled.div`
+    position: relative;
+    margin-top: 9px;
+    margin-left: 20px;
+    font-size: 14px;
+    float: left;
+    .iconfont {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 15px;
+        &.focused {
+            background: #777;
+            color: #fff;
+        }
+    }
+`;
+
 export const NavSearch = styled.input.attrs({
     placeholder: '搜索'
 })`
-    box-sizing: border-box;
     width: 240px;
     height: 38px;
-    margin-top: 9px;
-    margin-left: 20px;
     padding: 0 40px 0 20px;
+    box-sizing: border-box;
     border: none;
     outline: none;
-    font-size: 14px;
     border-radius: 19px;
     background: #eee;
+    color: #666;
     &::placeholder {
         color: #999;
     }
+    &.focused {
+        width: 280px;
+    }
+    &.slide-enter {
+        width: 240px;
+        transition: all .2s ease-out;
+    }
+    &.slide-enter-active {
+        width: 280px;
+    }
+    &.slide-enter-done {
+        width: 280px;
+    }
+    &.slide-exit {
+        width: 280px;
+        transition: all .2s ease-out;
+    }
+    &.slide-exit-active {
+        width: 240px;
+    }
+    &.slide-exit-done {
+        width: 240px;
+    }
+`;
+
+export const SearchInfo = styled.div`
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 48px;
+    width: 248px;
+    padding: 0 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+`;
+
+export const SearchInfoTitle = styled.div`
+    margin-top: 20px;
+    margin-bottom: 15px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #969696;
+`;
+
+export const SearchInfoSwitch = styled.div`
+    float: right;
+    font-size: 13px;
+    cursor: pointer;
+`;
+
+export const SearchInfoItem = styled.a`
+    display: block;
+    float: left;
+    line-height: 20px;
+    padding: 0 5px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #787878;
+    border-radius: 3px;
 `;
 
 export const Addition = styled.div`
