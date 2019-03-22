@@ -17,6 +17,7 @@ import {
     Button
 } from './style.js';
 import { actionCreators } from './store';
+import { actionCreators as LoginCreators } from '../../pages/login/store';
 
 class Header extends Component {
     getSearchArea() {
@@ -56,7 +57,7 @@ class Header extends Component {
         }
     }
     render() {
-        const { focused, list, handleInputFocus, handleInputBlur } = this.props;
+        const { focused, list, isLogin, handleInputFocus, handleInputBlur, handleLogout } = this.props;
         return (
             <HeaderWrapper>
                 <Link to="/">
@@ -68,7 +69,15 @@ class Header extends Component {
                     <NavItem className="right">
                         <span className="iconfont">&#xe636;</span>
                     </NavItem>
-                    <NavItem className="right">登录</NavItem>
+                    { isLogin ? 
+                        <NavItem 
+                            className="right"
+                            onClick={ handleLogout }
+                        >退出</NavItem> : 
+                        <Link to="/login">
+                            <NavItem className="right">登录</NavItem>
+                        </Link>
+                    }
                     <SearchWrapper>
                         <CSSTransition
                             in={focused}
@@ -101,7 +110,8 @@ const mapStateToProps = (state) => ({
     focused: state.getIn(["header", "focused"]),
     mouseIn: state.getIn(["header", "mouseIn"]),
     list: state.getIn(["header", "list"]),
-    page: state.getIn(["header", "page"])
+    page: state.getIn(["header", "page"]),
+    isLogin: state.getIn(["login", 'isLogin'])
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,6 +131,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     handlePage: function() {
         dispatch(actionCreators.getPageAction());
+    },
+    handleLogout: function() {
+        dispatch(LoginCreators.logoutAction());
     }
 })
 
