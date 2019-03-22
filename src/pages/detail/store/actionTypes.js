@@ -1,0 +1,1 @@
+export const DETAIL_LIST_DATA = "/detail/detail_list_data";
